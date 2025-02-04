@@ -18,12 +18,13 @@ terraform {
     }
   }
 
-  backend "s3" {}
+  backend "s3" {
+    bucket = "ajb-state"
+    region = "eu-west-2"
+  }
 }
 
 provider "aws" {
-  profile = "aws-sso-kpa"
-
   region = var.region
 }
 
