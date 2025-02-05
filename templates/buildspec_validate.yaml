@@ -30,7 +30,7 @@ phases:
   build:
     commands:
       - "echo ## TERRAFORM INIT : Initialize the Terraform Workspace"
-      - "terraform init -backend-config="key=${ENVIRONMENT}/terraform.tfstate"
+      - "terraform init -backend-config=key=${ENVIRONMENT}/terraform.tfstate"
       - "echo ## TERRAFORM VALIDATION : Starting ..."
       - "terraform validate"
 artifacts:
