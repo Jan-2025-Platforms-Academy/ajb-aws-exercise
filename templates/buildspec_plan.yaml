@@ -5,9 +5,9 @@ env:
     TF_VERSION: "1.10.5"
     ENVIRONMENT: "dev"
     parameter-store:
-      AWS_ACCESS_KEY_ID: "/Codebuild/AWS_ACCESS_KEY_ID"
-      AWS_SECRET_ACCESS_KEY: "/Codebuild/AWS_SECRET_ACCESS_KEY"
-      AWS_REGION: "/Codebuild/AWS_REGION"
+      AWS_ACCESS_KEY_ID: "/CodeBuild/AWS_ACCESS_KEY_ID"
+      AWS_SECRET_ACCESS_KEY: "/CodeBuild/AWS_SECRET_ACCESS_KEY"
+      AWS_REGION: "/CodeBuild/AWS_REGION"
 
 phases:
   install:
