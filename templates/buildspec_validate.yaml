@@ -29,7 +29,6 @@ phases:
       - aws sts get-caller-identity
   build:
     commands:
-      - "cd ${CODEBUILD_SRC_DIR}"
       - "echo ## TERRAFORM INIT : Initialize the Terraform Workspace"
       - "terraform init -backend-config="key=${ENVIRONMENT}/terraform.tfstate"
       - "echo ## TERRAFORM VALIDATION : Starting ..."
