@@ -1,0 +1,33 @@
+version: 0.2
+
+env:
+  variables:
+    TF_VERSION: "1.10.5"
+    ENVIRONMENT: "dev"
+    parameter-store:
+      AWS_ACCESS_KEY_ID: "/Codebuild/AWS_ACCESS_KEY_ID"
+      AWS_SECRET_ACCESS_KEY: "/Codebuild/AWS_SECRET_ACCESS_KEY"
+      AWS_REGION: "/Codebuild/AWS_REGION"
+
+phases:
+  install:
+    runtime-versions:
+      python: 3.9
+    commands:
+      - curl -s -qL -o terraform.zip https://releases.hashicorp.com/terraform/${TF_VERSION}/terraform_${TF_VERSION}_linux_amd64.zip
+      - unzip -o terraform.zip
+      - mv terraform /bin
+      - rm terraform.zip
+      - yum update -y
+      - yum install -y curl jq awscli
+      - aws configure set aws_access_key_id $AWS_ACCESS_KEY_ID
+      - aws configure set aws_secret_access_key $AWS_SECRET_ACCESS_KEY
+      - aws configure set region $AWS_REGION
+  build:
+    commands:
+      - cd ${CODEBUILD_SRC_DIR}
+      - echo "## TERRAFORM APPLY : Starting with the Terraform Apply"
+      - terraform apply -input=false tfapply
+artifacts:
+  files:
+    - '**/*'
